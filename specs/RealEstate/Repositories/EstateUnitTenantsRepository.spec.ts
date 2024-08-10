@@ -37,5 +37,9 @@ describe("Repositories.EstateUnitTenantsRepository", () => {
     test("it returns a tenant on date", () => {
       expect(repository.findTenantByDate(new Date(2022, 2, 2))).toEqual(tenant);
     });
+
+    test("it returns a tenant on date", () => {
+      expect(repository.findTenantByDate(new Date(2010, 2, 2))).toBeUndefined();
+    });
   })
 });
