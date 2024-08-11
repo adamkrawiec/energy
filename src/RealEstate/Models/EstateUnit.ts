@@ -5,13 +5,17 @@ import BaseModel from './BaseModel';
 export default class EstateUnit extends BaseModel{
   protected name: string;
   protected number: string;
-  protected realEstate: RealEstate;
+  protected _realEstate: RealEstate;
   
   constructor(id: number, name: string, number: string, realEstate: RealEstate) {
     super(id);
     this.name = name;
     this.number = number;
-    this.realEstate = realEstate;
+    this._realEstate = realEstate;
+  }
+
+  public get realEstate() {
+    return this._realEstate;
   }
 
   availableBetween(dateFrom: Date, dateTo: Date): boolean {

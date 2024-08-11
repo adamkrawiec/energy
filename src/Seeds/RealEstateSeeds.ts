@@ -1,4 +1,4 @@
-import RealEstateCreator from "../RealEstate/RealEstateCreator";
+import RealEstateCreator from "../RealEstate/Operations/RealEstateCreator";
 import RealEstate from "../RealEstate/Models/RealEstate";
 
 export default class RealEstateSeeds {
