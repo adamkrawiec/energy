@@ -7,12 +7,16 @@ import EstateUnitTenantsRepository from "./RealEstate/Repositories/EstateUnitTen
 import EstateUnitRepository from "./RealEstate/Repositories/EstateUnitRepository";
 import RealEstateSeeds from "./Seeds/RealEstateSeeds";
 import { AppDataSource } from "./data-source";
+import MeterSeed from "./Measurements/Seeds/MeterSeed";
+import MeterInstallationSeeds from "./Seeds/MeterInstallationSeeds";
 
-AppDataSource.initialize()
-    .then(() => { console.log("DB started") })
-    .catch((error) => console.log(error))
+// AppDataSource.initialize()
+//     .then(() => { console.log("DB started") })
+//     .catch((error) => console.log(error))
 
 const realEstateSeeds = new RealEstateSeeds();
+const metersSeeds = new MeterSeed();
+const meterInstalationSeeds = new MeterInstallationSeeds();
 const [re1, re2]: RealEstate[] = realEstateSeeds.seed();
 const eu1: EstateUnit = new EstateUnit(1, "EU0001", "1", re1);
 const eu2: EstateUnit = new EstateUnit(2, "EU0002", "2", re2);
@@ -27,7 +31,11 @@ const tenantRepository = new EstateUnitTenantsRepository(eu1);
 estateUnitRepository.addBatch([eu1, eu2]);
 tenantRepository.addBatch([t1, t2, t3]);
 
+metersSeeds.seedMeasuringPoints();
+meterInstalationSeeds.seed();
+
 console.log(eu1.availableBetween(new Date(2023, 9, 1, 2), new Date(2023, 9, 10, 2)));
 console.log(eu1.availableBetween(new Date(2023, 7, 1, 2), new Date(2023, 7, 10, 2)));
+console.log(eu1.meterInstallations())
 // console.log(eu1.findTenantByDate(new Date(2023, 2, 1, 2)));
 // console.log(eu1.currentTenant())
