@@ -1,22 +1,24 @@
 import RealEstate from './RealEstate';
 import EstateUnitTenantsRepository from '../Repositories/EstateUnitTenantsRepository';
 import BaseModel from './BaseModel';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
+@Entity()
 export default class EstateUnit extends BaseModel{
-  protected name: string;
-  protected number: string;
-  protected _realEstate: RealEstate;
+  @Column()
+  public name: string;
+  @Column()
+  public number: string;
+  @ManyToOne(() => RealEstate, (realEstate => realEstate.estateUnits))
+  public realEstate: RealEstate;
   
   constructor(id: number, name: string, number: string, realEstate: RealEstate) {
     super(id);
     this.name = name;
     this.number = number;
-    this._realEstate = realEstate;
+    this.realEstate = realEstate;
   }
 
-  public get realEstate() {
-    return this._realEstate;
-  }
 
   availableBetween(dateFrom: Date, dateTo: Date): boolean {
     const tenantRepository = new EstateUnitTenantsRepository(this);

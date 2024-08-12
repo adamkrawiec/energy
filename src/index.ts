@@ -1,9 +1,16 @@
+import "reflect-metadata"
+
 import EstateUnit from "./RealEstate/Models/EstateUnit";
 import RealEstate from "./RealEstate/Models/RealEstate";
 import Tenant from "./RealEstate/Models/Tenant";
 import EstateUnitTenantsRepository from "./RealEstate/Repositories/EstateUnitTenantsRepository";
 import EstateUnitRepository from "./RealEstate/Repositories/EstateUnitRepository";
 import RealEstateSeeds from "./Seeds/RealEstateSeeds";
+import { AppDataSource } from "./data-source";
+
+AppDataSource.initialize()
+    .then(() => { console.log("DB started") })
+    .catch((error) => console.log(error))
 
 const realEstateSeeds = new RealEstateSeeds();
 const [re1, re2]: RealEstate[] = realEstateSeeds.seed();
