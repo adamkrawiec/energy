@@ -9,6 +9,7 @@ import RealEstateSeeds from "./Seeds/RealEstateSeeds";
 import { AppDataSource } from "./data-source";
 import MeterSeed from "./Measurements/Seeds/MeterSeed";
 import MeterInstallationSeeds from "./Seeds/MeterInstallationSeeds";
+import MeterReadoutQuery from "./Measurements/Queries/MeterReadoutQuery";
 
 // AppDataSource.initialize()
 //     .then(() => { console.log("DB started") })
@@ -37,5 +38,11 @@ meterInstalationSeeds.seed();
 console.log(eu1.availableBetween(new Date(2023, 9, 1, 2), new Date(2023, 9, 10, 2)));
 console.log(eu1.availableBetween(new Date(2023, 7, 1, 2), new Date(2023, 7, 10, 2)));
 console.log(eu1.meterInstallations())
+
+// var meterReadoutQuery = new MeterReadoutQuery(eu1.meterInstallations()[0].measuringPoint.meters[0]);
+// console.log(meterReadoutQuery.allReadouts());
+// console.log(meterReadoutQuery.readoutOnDate(new Date(2020, 0, 5)));
+console.log("======")
+// console.log(meterReadoutQuery.readoutsInDateRange(new Date(2020, 0, 1), new Date(2020, 0, 1)))
 // console.log(eu1.findTenantByDate(new Date(2023, 2, 1, 2)));
 // console.log(eu1.currentTenant())

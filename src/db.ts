@@ -60,4 +60,9 @@ export default class DB {
     return this._meterInstallations;
   }
 
+  // this should maybe be a query object
+  public meterInstallationsForEstateUnit(estateUnit: EstateUnit): MeterInstallation[] {
+    return this._meterInstallations.filter(meterInstallation => meterInstallation.estateUnit === estateUnit)
+  }
+
 }
