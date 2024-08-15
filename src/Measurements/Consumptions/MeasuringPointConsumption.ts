@@ -1,6 +1,6 @@
 import { MeasuringPoint, Readout } from "../Models";
 import MeasuringPointReadoutQuery from "../Queries/MeasuringPointReadoutQuery";
-import { sumBy } from 'lodash';
+import { reverse, last } from "lodash";
 
 export default class MeasuringPointConsumption {
   private measuringPointReadoutQuery: MeasuringPointReadoutQuery;
@@ -10,7 +10,8 @@ export default class MeasuringPointConsumption {
   }
 
   public consumption(): number {
-    return sumBy(this.measuringPointReadoutQuery.allReadouts(), 'value');
+    return (this.measuringPointReadoutQuery.lastReadout().value) - 
+           (this.measuringPointReadoutQuery.firstReadout().value);
   }
 
   public consumptionOnDate(date: Date): number | undefined {
@@ -20,8 +21,21 @@ export default class MeasuringPointConsumption {
   }
 
   public consumptionBetweenDates(dateFrom: Date, dateTo: Date): number | undefined {
-    let readouts: Readout[] = this.measuringPointReadoutQuery.readoutsBetweenDates(dateFrom, dateTo);
+    let readouts = this.measuringPointReadoutQuery.readoutsBetweenDates(dateFrom, dateTo);
 
-    return sumBy(readouts, 'value');
+    return this.valueOnPeriodEnd(readouts) - (this.valueOnPeriodBegin(readouts))
+  }
+
+  private valueOnPeriodBegin(readouts: Readout[]): number {
+    let readoutOnPeriodBegin = readouts[0];
+    if(!readoutOnPeriodBegin) {
+      readoutOnPeriodBegin = readouts.find(readout => readout.value);
+    }
+    return readoutOnPeriodBegin ? readoutOnPeriodBegin.value : 0;
+  }
+
+  private valueOnPeriodEnd(readouts: Readout[]): number {
+    let readoutOnPeriodEnd = last(readouts);
+    return readoutOnPeriodEnd ? readoutOnPeriodEnd.value : 0;
   }
 }
