@@ -1,4 +1,4 @@
-import { Meter, Readout } from "../Models/Meter";
+import { Meter, Readout } from "../Models";
 import BaseQuery from "./BaseQuery";
 import IReadoutQuery from "./interfaces/IReadoutQuery";
 

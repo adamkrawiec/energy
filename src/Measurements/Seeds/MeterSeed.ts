@@ -1,5 +1,5 @@
 import DB from "../../db";
-import { MeasuringPoint, Meter, Readout } from "../Models/Meter";
+import { MeasuringPoint, Meter, Readout } from "../Models";
 
 export default class MeterSeed {
   private db: DB;

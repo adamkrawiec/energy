@@ -1,6 +1,6 @@
 import { MeasuringPoint, Readout } from "../Models";
 import MeasuringPointReadoutQuery from "../Queries/MeasuringPointReadoutQuery";
-import { reverse, last } from "lodash";
+import { last } from "lodash";
 
 export default class MeasuringPointConsumption {
   private measuringPointReadoutQuery: MeasuringPointReadoutQuery;

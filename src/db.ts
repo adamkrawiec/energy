@@ -1,7 +1,7 @@
 import RealEstate from "./RealEstate/Models/RealEstate";
 import Tenant from "./RealEstate/Models/Tenant";
 import EstateUnit from "./RealEstate/Models/EstateUnit";
-import { MeasuringPoint, Meter, Readout } from "./Measurements/Models/Meter";
+import { MeasuringPoint, Meter, Readout } from "./Measurements/Models";
 import MeterInstallation from "./RealEstate/Models/MeterInstallation";
 
 export default class DB {

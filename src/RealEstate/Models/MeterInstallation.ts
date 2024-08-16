@@ -1,4 +1,4 @@
-import { MeasuringPoint } from "../../Measurements/Models/Meter";
+import { MeasuringPoint } from "../../Measurements/Models";
 import EstateUnit from "./EstateUnit";
 import RealEstate from "./RealEstate";
 

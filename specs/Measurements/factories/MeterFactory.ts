@@ -1,4 +1,4 @@
-import { Meter, MeasuringPoint, Readout } from '../../../src/Measurements/Models/Meter'
+import { Meter, MeasuringPoint, Readout } from '../../../src/Measurements/Models'
 import DB from '../../../src/db';
 
 class MeasuringPointFactory {
@@ -22,9 +22,10 @@ class MeterFactory {
                        identifier: string = "METER001",
                        measuringPoint: MeasuringPoint = MeasuringPointFactory.create(),
                        installedAt: Date | null = null,
+                       dismantledAt: Date | null = null,
                        createdAt: Date = new Date()
                       ): Meter {
-    const meter = new Meter(id, identifier, measuringPoint, installedAt, createdAt)
+    const meter = new Meter(id, identifier, measuringPoint, installedAt, dismantledAt, createdAt)
     DB.getInstance().meters.push(meter);
     return meter;
   }
