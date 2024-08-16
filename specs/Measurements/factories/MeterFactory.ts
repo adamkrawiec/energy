@@ -1,15 +1,15 @@
-import { Meter, MeasuringPoint, Readout } from '../../../src/Measurements/Models'
+import { Meter, MeasuringPoint, Readout, MeasuringPointCategory } from '../../../src/Measurements/Models'
 import DB from '../../../src/db';
 
 class MeasuringPointFactory {
-  public static create(id: number = 1, identifier: string = "MP00001", createdAt: Date = new Date()): MeasuringPoint {
-    const mp =  new MeasuringPoint(id, identifier, createdAt);
+  public static create(id: number = 1, identifier: string = "MP00001", category = MeasuringPointCategory.ELECTRICITY, createdAt: Date = new Date()): MeasuringPoint {
+    const mp =  new MeasuringPoint(id, identifier, category, createdAt);
     DB.getInstance().measuringPoints.push(mp);
     return mp
   }
 
-  public static createWithReadouts(id: number = 1, identifier: string = "MP00001", createdAt: Date = new Date()): MeasuringPoint {
-    const mp =  new MeasuringPoint(id, identifier, createdAt);
+  public static createWithReadouts(id: number = 1, identifier: string = "MP00001", category = MeasuringPointCategory.ELECTRICITY, createdAt: Date = new Date()): MeasuringPoint {
+    const mp =  new MeasuringPoint(id, identifier, category, createdAt);
     DB.getInstance().measuringPoints.push(mp);
     let meter = MeterFactory.create(1, "MTR0001", mp);
     ReadoutFactory.createList(meter);

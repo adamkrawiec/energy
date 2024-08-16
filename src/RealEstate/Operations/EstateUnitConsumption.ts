@@ -1,13 +1,15 @@
 import DB from "../../db";
-import { EstateUnit } from "../Models";
+import { EstateUnit, MeterInstallation, MeterInstallationCategory } from "../Models";
 import { sum } from 'lodash';
 
 export default class EstateUnitConsumption {
   private estateUnit: EstateUnit;
+  private category: MeterInstallationCategory;
   private db: DB;
 
-  constructor(estateUnit: EstateUnit) {
+  constructor(estateUnit: EstateUnit, category: MeterInstallationCategory = MeterInstallationCategory.ELECTRICITY) {
     this.estateUnit = estateUnit;
+    this.category = category;
     this.db = DB.getInstance();
   }
 
@@ -23,18 +25,21 @@ export default class EstateUnitConsumption {
     return sum(this.measuringPointConsumptionsBetweenDates(dateFrom, dateTo));
   }
 
+  private meterInstallations(): MeterInstallation[] {
+    return this.db.meterInstallationsForEstateUnit(this.estateUnit).filter(meterInstallation => meterInstallation.category === this.category);
+  }
+
   private measuringPointConsumptions(): number[] {
-    return this.db.meterInstallationsForEstateUnit(this.estateUnit).
-      map(meterInstallation => meterInstallation.measuringPoint.consumption())
+    return this.meterInstallations().
+      map(meterInstallation => meterInstallation.consumption())
   }
 
   private measuringPointConsumptionsOnDate(date: Date): number[] {
-    return this.db.meterInstallationsForEstateUnit(this.estateUnit).
-      map(meterInstallation => meterInstallation.measuringPoint.consumptionOnDate(date));
+    return this.meterInstallations().map(meterInstallation => meterInstallation.consumptionOnDate(date));
   }
 
   private measuringPointConsumptionsBetweenDates(dateFrom: Date, dateTo: Date): number[] {
-    return this.db.meterInstallationsForEstateUnit(this.estateUnit).
+    return this.meterInstallations().
       map(meterInstallation => meterInstallation.measuringPoint.consumptionBetweenDates(dateFrom, dateTo));
   }
 }

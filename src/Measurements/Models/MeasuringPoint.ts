@@ -1,14 +1,24 @@
 import MeasuringPointConsumption from "../Consumptions/MeasuringPointConsumption";
 import { IConsumpable } from "./interfaces";
 
+export enum MeasuringPointCategory {
+  ELECTRICITY,
+  COLD_WATER,
+  WARM_WATER,
+  GAS,
+  HEAT
+}
+
 export default class MeasuringPoint implements IConsumpable {
   public id: number;
   public identifier: string;
+  public category: MeasuringPointCategory;
   public createdAt: Date;
 
-  constructor(id: number, identifier: string, createdAt: Date) {
+  constructor(id: number, identifier: string, category: MeasuringPointCategory, createdAt: Date) {
     this.id = id;
     this.identifier = identifier;
+    this.category = category;
     this.createdAt = createdAt;
   }
 

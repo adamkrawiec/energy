@@ -1,4 +1,12 @@
-import { Meter } from ".";
+import Meter from "./Meter";
+import { MeasuringPointCategory } from "./MeasuringPoint";
+
+const measuringPointCategoryUnitMap  = {
+    [MeasuringPointCategory.ELECTRICITY]: 'Wh',
+    [MeasuringPointCategory.COLD_WATER]: 'm3',
+    [MeasuringPointCategory.GAS]: 'm3',
+    [MeasuringPointCategory.HEAT]: ''
+};
 
 export default class Readout {
   public id: number;
@@ -11,5 +19,9 @@ export default class Readout {
     this.value = value;
     this.timestamp = timestamp;
     this.meter = meter;
+  }
+
+  public get unit(): string {
+    return measuringPointCategoryUnitMap[this.meter.measuringPoint.category];
   }
 }
