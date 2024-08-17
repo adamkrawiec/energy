@@ -1,14 +1,23 @@
 import { MeasuringPoint, MeasuringPointCategory } from "../../Measurements/Models";
+import BaseModel from "./BaseModel";
 import EstateUnit from "./EstateUnit";
 import RealEstate from "./RealEstate";
 
 export enum MeterInstallationCategory {
-  ELECTRICITY,
-  COLD_WATER,
-  WARM_WATER,
-  GAS,
-  HEAT
+  ELECTRICITY = "ELECTRICITY",
+  COLD_WATER = "COLD_WATER",
+  WARM_WATER = "WARM_WATER",
+  GAS = "GAS",
+  HEAT = "HEAT"
 }
+
+export const measuringPointCategoryUnitMap = {
+  [MeterInstallationCategory.ELECTRICITY]: 'Wh',
+  [MeterInstallationCategory.COLD_WATER]: 'm3',
+  [MeterInstallationCategory.WARM_WATER]: 'm3',
+  [MeterInstallationCategory.GAS]: 'm3',
+  [MeterInstallationCategory.HEAT]: ''
+};
 
 const CategoryMap = {
   [MeasuringPointCategory.ELECTRICITY]: MeterInstallationCategory.ELECTRICITY,
@@ -19,13 +28,14 @@ const CategoryMap = {
 }
 
 // this is the only class to be expected a connection between RealEstate and Measurments modules
-export default class MeterInstallation {
+export default class MeterInstallation extends BaseModel {
   estateUnit: EstateUnit | null;
   realEstate: RealEstate | EstateUnit | null;
   measuringPoint: MeasuringPoint;
   category: MeterInstallationCategory;
 
-  constructor(measuringPoint: MeasuringPoint, installationPoint: EstateUnit | RealEstate | null) {
+  constructor(id: number, measuringPoint: MeasuringPoint, installationPoint: EstateUnit | RealEstate | null) {
+    super(id);
     this.measuringPoint = measuringPoint;
     this.category = CategoryMap[measuringPoint.category];
 

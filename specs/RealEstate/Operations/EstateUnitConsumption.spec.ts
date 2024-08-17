@@ -1,4 +1,4 @@
-import EstateUnitConsumption from '../../../src/RealEstate/Operations/EstateUnitConsumption';
+import EstateUnitConsumption from '../../../src/RealEstate/Operations/EstateUnit/EstateUnitConsumption';
 import { MeasuringPointFactory, } from '../../Measurements/factories/MeterFactory';
 import EstateUnitFactory from '../factories/EstateUnitFactory';
 import MeterInstallationFactory from '../factories/MeterInstallationFactory';
@@ -7,8 +7,8 @@ describe("EstateUnitConsumption", () => {
   let estateUnit = EstateUnitFactory.create();
   let measuringPoint1 = MeasuringPointFactory.createWithReadouts();
   let measuringPoint2 = MeasuringPointFactory.createWithReadouts();
-  let meterInstallation1 = MeterInstallationFactory.create(estateUnit, measuringPoint1);
-  let meterInstallation2 = MeterInstallationFactory.create(estateUnit, measuringPoint2);
+  let meterInstallation1 = MeterInstallationFactory.create(1, estateUnit, measuringPoint1);
+  let meterInstallation2 = MeterInstallationFactory.create(2, estateUnit, measuringPoint2);
 
   let consumptionService = new EstateUnitConsumption(estateUnit);
 

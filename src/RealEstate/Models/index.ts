@@ -1,7 +1,7 @@
 import EstateUnit from "./EstateUnit";
 import RealEstate from "./RealEstate";
 import Tenant from "./Tenant";
-import MeterInstallation, { MeterInstallationCategory } from "./MeterInstallation";
+import MeterInstallation, { MeterInstallationCategory, measuringPointCategoryUnitMap } from "./MeterInstallation";
 
 
 export {
@@ -9,5 +9,6 @@ export {
   RealEstate,
   Tenant,
   MeterInstallation,
-  MeterInstallationCategory
+  MeterInstallationCategory,
+  measuringPointCategoryUnitMap
 }

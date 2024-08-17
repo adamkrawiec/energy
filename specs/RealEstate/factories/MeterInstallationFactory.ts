@@ -6,9 +6,10 @@ import { MeasuringPointFactory } from "../../Measurements/factories/MeterFactory
 import EstateUnitFactory from "./EstateUnitFactory";
 
 export default class MeterInstallationFactory {
-  public static create(estateUnit: EstateUnit = EstateUnitFactory.create(),
+  public static create(id: number = 1,
+                       estateUnit: EstateUnit = EstateUnitFactory.create(),
                        measuringPoint: MeasuringPoint = MeasuringPointFactory.create()): MeterInstallation {
-    let mi = new MeterInstallation(measuringPoint, estateUnit);
+    let mi = new MeterInstallation(id, measuringPoint, estateUnit);
     DB.getInstance().meterInstallations.push(mi);
     return mi;
   }

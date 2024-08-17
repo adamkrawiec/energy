@@ -1,16 +1,16 @@
-import DB from "../../db";
-import { EstateUnit, MeterInstallation, MeterInstallationCategory } from "../Models";
+import { EstateUnit, MeterInstallation, MeterInstallationCategory } from "../../Models";
+import MeterInstallationRepository from "../../Repositories/MeterInstallationRepository";
 import { sum } from 'lodash';
 
 export default class EstateUnitConsumption {
   private estateUnit: EstateUnit;
-  private category: MeterInstallationCategory;
-  private db: DB;
+  private category: string;
+  private meterInstallationRepository: MeterInstallationRepository;
 
-  constructor(estateUnit: EstateUnit, category: MeterInstallationCategory = MeterInstallationCategory.ELECTRICITY) {
+  constructor(estateUnit: EstateUnit, category: string = MeterInstallationCategory.ELECTRICITY) {
     this.estateUnit = estateUnit;
     this.category = category;
-    this.db = DB.getInstance();
+    this.meterInstallationRepository = new MeterInstallationRepository();
   }
 
   public consumption(): number {
@@ -26,7 +26,7 @@ export default class EstateUnitConsumption {
   }
 
   private meterInstallations(): MeterInstallation[] {
-    return this.db.meterInstallationsForEstateUnit(this.estateUnit).filter(meterInstallation => meterInstallation.category === this.category);
+    return this.meterInstallationRepository.findAllForEstateUnitAndCategory(this.estateUnit, this.category);
   }
 
   private measuringPointConsumptions(): number[] {
