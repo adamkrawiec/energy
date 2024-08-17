@@ -1,6 +1,13 @@
-import RealEstate from "./RealEstate/Models/RealEstate";
-import Tenant from "./RealEstate/Models/Tenant";
-import EstateUnit from "./RealEstate/Models/EstateUnit";
+import {
+  RealEstate,
+  Tenant,
+  EstateUnit,
+  User,
+  Account,
+  AccessRight,
+  Session
+} from "./RealEstate/Models";
+
 import { MeasuringPoint, Meter, Readout } from "./Measurements/Models";
 import MeterInstallation from "./RealEstate/Models/MeterInstallation";
 
@@ -13,6 +20,12 @@ export default class DB {
   private _meters: Meter[];
   private _readouts: Readout[];
   private _meterInstallations: MeterInstallation[];
+  private _users: User[];
+  private _accounts: Account[];
+  private _accessRights: AccessRight[];
+  private _sessions: Session[];
+
+
 
   private constructor() {
     this._realEstates = [];
@@ -22,6 +35,10 @@ export default class DB {
     this._meters = [];
     this._readouts = [];
     this._meterInstallations = [];
+    this._users = [];
+    this._accounts = [];
+    this._accessRights = [];
+    this._sessions = [];
   }
 
   public static getInstance() {
@@ -58,5 +75,13 @@ export default class DB {
   
   public get meterInstallations(): MeterInstallation[] {
     return this._meterInstallations;
+  }
+
+  public get users(): User[] {
+    return this._users;
+  }
+
+  public get sessions(): Session[] {
+    return this._sessions;
   }
 }

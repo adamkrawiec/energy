@@ -1,26 +1,32 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import BaseModel from "./BaseModel";
 import EstateUnit from "./EstateUnit";
+import Account from "./Auth/Account";
 
-@Entity()
-export default class RealEstate extends BaseModel{
-  @Column()
+export default class RealEstate extends BaseModel {
+
   public name: string;
-  @Column()
+
   public city: string;
-  @Column()
+
   public street: string;
-  @Column()
+
   public number: string;
 
-  @OneToMany(() => EstateUnit, estateUnit => estateUnit.realEstate)
-  public estateUnits: EstateUnit;
+  public createdAt: Date;
 
-  constructor(id: number, name: string, city: string, street: string, number: string) {
+  public account: Account;
+
+  // @OneToMany(() => EstateUnit, estateUnit => estateUnit.realEstate)
+  // public estateUnits: EstateUnit;
+
+  constructor(id: number, name: string, city: string, street: string, number: string, account: Account, createdAt: Date) {
     super(id);
     this.name = name;
     this.city = city;
     this.street = street;
     this.number = number;
+    this.account = account;
+    this.createdAt = createdAt;
   }
 }

@@ -5,13 +5,13 @@ import { Column, Entity, ManyToOne } from 'typeorm';
 import MeterInstallation from './MeterInstallation';
 import DB from '../../db';
 
-@Entity()
+// @Entity()
 export default class EstateUnit extends BaseModel{
-  @Column()
+  // @Column()
   public name: string;
-  @Column()
+  // @Column()
   public number: string;
-  @ManyToOne(() => RealEstate, (realEstate => realEstate.estateUnits))
+  // @ManyToOne(() => RealEstate, (realEstate => realEstate.estateUnits))
   public realEstate: RealEstate;
   
   constructor(id: number, name: string, number: string, realEstate: RealEstate) {

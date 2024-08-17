@@ -1,8 +1,10 @@
 import RealEstate from "../../../src/RealEstate/Models/RealEstate";
+import { AccountFactory } from "../factories/Auth/AccountFactory";
+import RealEstateFactory from "../factories/RealEstateFactory";
 
 describe("Model.RealEstate", () => {
   test("it has a name", () => {
-    let realEstate = new RealEstate(1, "RE1", "Katowice", "Bocianow", "1");
+    let realEstate = RealEstateFactory.create();
 
     expect(realEstate.name).toEqual("RE1");
   });

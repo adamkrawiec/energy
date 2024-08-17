@@ -12,7 +12,7 @@ export default class MeterInstallationSeeds {
     var estateUnit = this.db.estateUnits[0];
     var measuringPoint = this.db.measuringPoints[0];
 
-    var mp = new MeterInstallation(measuringPoint, estateUnit);
+    var mp = new MeterInstallation(1, measuringPoint, estateUnit);
     this.db.meterInstallations.push(mp);
   }
 }

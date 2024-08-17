@@ -1,5 +1,5 @@
 import DB from "../../db";
-import { MeasuringPoint, Meter, Readout } from "../Models";
+import { MeasuringPoint, MeasuringPointCategory, Meter, Readout } from "../Models";
 
 export default class MeterSeed {
   private db: DB;
@@ -9,14 +9,14 @@ export default class MeterSeed {
   }
 
   public seedMeasuringPoints() {
-    const mp1 = new MeasuringPoint(1, "MP0001", new Date(2020, 1, 1));
-    const mp2 = new MeasuringPoint(2, "MP0002", new Date(2020, 1, 1));
-    const mp3 = new MeasuringPoint(3, "MP0003", new Date(2020, 1, 1));
-    const mp4 = new MeasuringPoint(4, "MP0004", new Date(2020, 1, 1));
-    const m1 = new Meter(1, "MTR00001", mp1, new Date(2020, 1, 1), new Date(2020, 1, 1));
-    const m2 = new Meter(2, "MTR00002", mp2, new Date(2020, 1, 4), new Date(2020, 1, 1));
-    const m3 = new Meter(3, "MTR00003", mp3, new Date(2020, 6, 10), new Date(2020, 1, 1));
-    const m4 = new Meter(4, "MTR00004", mp4, new Date(2022, 6, 10), new Date(2020, 1, 1));
+    const mp1 = new MeasuringPoint(1, "MP0001", MeasuringPointCategory.ELECTRICITY, new Date(2020, 1, 1));
+    const mp2 = new MeasuringPoint(2, "MP0002", MeasuringPointCategory.ELECTRICITY,new Date(2020, 1, 1));
+    const mp3 = new MeasuringPoint(3, "MP0003", MeasuringPointCategory.ELECTRICITY,new Date(2020, 1, 1));
+    const mp4 = new MeasuringPoint(4, "MP0004", MeasuringPointCategory.ELECTRICITY,new Date(2020, 1, 1));
+    const m1 = new Meter(1, "MTR00001", mp1, new Date(2020, 1, 1), new Date(2020, 1, 1), new Date());
+    const m2 = new Meter(2, "MTR00002", mp2, new Date(2020, 1, 4), new Date(2020, 1, 1), new Date());
+    const m3 = new Meter(3, "MTR00003", mp3, new Date(2020, 6, 10), new Date(2020, 1, 1), new Date());
+    const m4 = new Meter(4, "MTR00004", mp4, new Date(2022, 6, 10), new Date(2020, 1, 1), new Date());
     this.db.measuringPoints.push(mp1);
     this.db.measuringPoints.push(mp2);
     this.db.measuringPoints.push(mp1);
