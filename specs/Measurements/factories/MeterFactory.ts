@@ -11,8 +11,7 @@ class MeasuringPointFactory {
   public static createWithReadouts(id: number = 1, identifier: string = "MP00001", category = MeasuringPointCategory.ELECTRICITY, createdAt: Date = new Date()): MeasuringPoint {
     const mp =  new MeasuringPoint(id, identifier, category, createdAt);
     DB.getInstance().measuringPoints.push(mp);
-    let meter = MeterFactory.create(1, "MTR0001", mp);
-    ReadoutFactory.createList(meter);
+    MeterFactory.createWithReadouts(1, "MTR0001", mp, new Date());
     return mp
   }
 }
@@ -28,6 +27,18 @@ class MeterFactory {
     const meter = new Meter(id, identifier, measuringPoint, installedAt, dismantledAt, createdAt)
     DB.getInstance().meters.push(meter);
     return meter;
+  }
+
+  public static createWithReadouts(id: number = 1,
+                                   identifier: string = "METER001",
+                                   measuringPoint: MeasuringPoint = MeasuringPointFactory.create(),
+                                   installedAt: Date | null = null,
+                                   dismantledAt: Date | null = null,
+                                   createdAt: Date = new Date()
+                                ): Meter {
+    let meter = MeterFactory.create(id, identifier, measuringPoint, installedAt, dismantledAt, createdAt);
+    ReadoutFactory.createList(meter);
+    return meter
   }
 }
 

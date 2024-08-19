@@ -48,6 +48,10 @@ export default class MeterInstallation extends BaseModel {
     }
   }
 
+  public get identifier(): string {
+    return this.measuringPoint.identifier;
+  }
+
   public consumption(): number {
     return this.measuringPoint.consumption()
   }
@@ -58,5 +62,9 @@ export default class MeterInstallation extends BaseModel {
 
   public consumptionBetweenDates(dateFrom: Date, dateTo: Date): number {
     return this.measuringPoint.consumptionBetweenDates(dateFrom, dateTo);
+  }
+
+  public meterStatus(): string {
+    return this.measuringPoint.currentMeterStatus();
   }
 }

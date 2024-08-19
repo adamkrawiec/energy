@@ -1,4 +1,6 @@
+import MeterReadoutQuery from "../Queries/MeterReadoutQuery";
 import MeasuringPoint from "./MeasuringPoint";
+import Readout from "./Readout";
 
 export default class Meter {
   public id: number;
@@ -17,7 +19,34 @@ export default class Meter {
     this.createdAt = createdAt;
   }
 
-  public online(): boolean {
+  public get online(): boolean {
     return !!this.installedAt && !this.dismantledAt
+  }
+
+  public get installationRequired(): boolean {
+    return !this.installedAt
+  }
+
+  public get lastReadout(): Readout {
+    return new MeterReadoutQuery(this).lastReadout();
+  }
+
+  public get status(): string {
+    if(this.lastReadout.error) {
+      return "readout_error"
+    }
+    if(this.online) {
+      return "online"
+    }
+
+    if(this.installationRequired) {
+      return "installation_required"
+    }
+
+    if(this.dismantledAt) {
+      return "dismantled"
+    }
+
+    return "out_of_service"
   }
 }

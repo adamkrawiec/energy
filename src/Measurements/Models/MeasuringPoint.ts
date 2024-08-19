@@ -1,4 +1,6 @@
 import MeasuringPointConsumption from "../Consumptions/MeasuringPointConsumption";
+import MeasuringPointMeters from "../Queries/Meters/MeasuringPointMeters";
+import Meter from "./Meter";
 import { IConsumpable } from "./interfaces";
 
 export enum MeasuringPointCategory {
@@ -22,6 +24,14 @@ export default class MeasuringPoint implements IConsumpable {
     this.createdAt = createdAt;
   }
 
+  public get meters(): Meter[] {
+    return new MeasuringPointMeters(this).meters();
+  }
+
+  public get currentMeter(): Meter {
+    return new MeasuringPointMeters(this).currentMeter();
+  }
+
   public consumption(): number {
     return new MeasuringPointConsumption(this).consumption();
   }
@@ -32,5 +42,9 @@ export default class MeasuringPoint implements IConsumpable {
 
   public consumptionBetweenDates(dateFrom: Date, dateTo: Date): number | undefined {
     return new MeasuringPointConsumption(this).consumptionBetweenDates(dateFrom, dateTo);
+  }
+
+  public currentMeterStatus() {
+    return this.currentMeter.status;
   }
 }

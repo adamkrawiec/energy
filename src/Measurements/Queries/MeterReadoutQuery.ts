@@ -1,10 +1,10 @@
 import { Meter, Readout } from "../Models";
 import BaseQuery from "./BaseQuery";
 import IReadoutQuery from "./interfaces/IReadoutQuery";
+import { last } from 'lodash';
 
 export default class MeterReadoutQuery extends BaseQuery implements IReadoutQuery {
   private meter: Meter;
-  private _meters: Meter[];
 
   constructor(meter: Meter) {
     super()
@@ -13,6 +13,14 @@ export default class MeterReadoutQuery extends BaseQuery implements IReadoutQuer
 
   public allReadouts(): Readout[] {
     return this.db.readouts.filter(readout => this.meter === readout.meter)
+  }
+
+  public todayReadout(): Readout {
+    return this.readoutOnDate(new Date);
+  }
+
+  public lastReadout(): Readout {
+    return last(this.allReadouts());
   }
 
   public readoutOnDate(date: Date): Readout | null {

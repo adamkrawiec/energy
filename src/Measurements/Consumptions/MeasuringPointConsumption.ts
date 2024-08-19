@@ -10,8 +10,10 @@ export default class MeasuringPointConsumption {
   }
 
   public consumption(): number {
-    return (this.measuringPointReadoutQuery.lastReadout().value) - 
-           (this.measuringPointReadoutQuery.firstReadout().value);
+    let lastReadout = this.measuringPointReadoutQuery.lastReadout();
+    let firstReadout = this.measuringPointReadoutQuery.firstReadout()
+    return (lastReadout ? lastReadout.value : 0) - 
+           (firstReadout.value ? firstReadout.value : 0);
   }
 
   public consumptionOnDate(date: Date): number | undefined {

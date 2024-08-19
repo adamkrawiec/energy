@@ -1,6 +1,6 @@
-import RealEstate from "../Models/RealEstate.js";
-import { Account } from "../Models/index.js";
-import RealEstateRepository from "../Repositories/RealEstateRepository.js";
+import RealEstate from "../../Models/RealEstate.js";
+import { Account } from "../../Models/index.js";
+import RealEstateRepository from "../../Repositories/RealEstateRepository.js";
 
 export default class RealEstateCreator {
   private repository: RealEstateRepository

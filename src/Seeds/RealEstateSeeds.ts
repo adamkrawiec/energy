@@ -1,4 +1,4 @@
-import RealEstateCreator from "../RealEstate/Operations/RealEstateCreator";
+import RealEstateCreator from "../RealEstate/Operations/RealEstate/RealEstateCreator";
 import RealEstate from "../RealEstate/Models/RealEstate";
 import { Account } from "../RealEstate/Models";
 
