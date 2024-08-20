@@ -6,16 +6,18 @@ import AccessRight from "./Auth/AccessRight";
 import Account from "./Auth/Account";
 import User from "./Auth/User";
 import Session from "./Auth/Session";
+import MonthlyConsumptionReport from "./ConsumptionReport";
 
 export {
-  EstateUnit,
-  RealEstate,
-  Tenant,
-  MeterInstallation,
-  MeterInstallationCategory,
-  measuringPointCategoryUnitMap,
   AccessRight,
   Account,
+  EstateUnit,
+  MeterInstallation,
+  MeterInstallationCategory,
+  MonthlyConsumptionReport,
+  RealEstate,
+  Session,
+  Tenant,
   User,
-  Session
+  measuringPointCategoryUnitMap,
 }

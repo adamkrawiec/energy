@@ -8,10 +8,6 @@ type ConsumptionSummary = {
   unit: string
 }
 
-type Summary = {
-  month: string,
-  conumptions: ConsumptionSummary[]
-}
 
 export default class MonthlyConsumptionSummary extends EstateUnitBase {
   public date: Date;
@@ -21,7 +17,7 @@ export default class MonthlyConsumptionSummary extends EstateUnitBase {
     this.date = date;
   }
 
-  public getSummary(): Summary[] {
+  public getSummary(): ConsumptionSummary[] {
     let summary = [];
 
     for(let category in MeterInstallationCategory) {

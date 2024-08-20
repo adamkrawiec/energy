@@ -5,7 +5,8 @@ import {
   User,
   Account,
   AccessRight,
-  Session
+  Session,
+  MonthlyConsumptionReport
 } from "./RealEstate/Models";
 
 import { MeasuringPoint, Meter, Readout } from "./Measurements/Models";
@@ -24,6 +25,7 @@ export default class DB {
   private _accounts: Account[];
   private _accessRights: AccessRight[];
   private _sessions: Session[];
+  private _monthlyConsumptionReports: MonthlyConsumptionReport[];
 
 
 
@@ -83,5 +85,9 @@ export default class DB {
 
   public get sessions(): Session[] {
     return this._sessions;
+  }
+
+  public get monthlyConsumptionReports(): MonthlyConsumptionReport[] {
+    return this._monthlyConsumptionReports;
   }
 }
