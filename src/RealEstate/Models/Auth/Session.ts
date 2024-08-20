@@ -1,11 +1,13 @@
+import BaseModel from "../BaseModel";
 import User from "./User";
 
-export default class Session {
+export default class Session extends BaseModel {
   public sessionId: string;
   public user: User;
   public createdAt: Date;
 
-  constructor(sessionId, user, createdAt = new Date()) {
+  constructor(id, sessionId, user, createdAt = new Date()) {
+    super(id)
     this.sessionId = sessionId;
     this.user = user;
     this.createdAt = createdAt

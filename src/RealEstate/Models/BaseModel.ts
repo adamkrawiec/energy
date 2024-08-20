@@ -1,7 +1,7 @@
 import { PrimaryGeneratedColumn } from "typeorm";
 
 export default class BaseModel {
-  @PrimaryGeneratedColumn()
+  // @PrimaryGeneratedColumn()
   public id: number = 0;
 
 

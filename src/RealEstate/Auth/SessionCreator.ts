@@ -12,7 +12,7 @@ export default class SessionCreator {
   }
 
   public create(): Session {
-    const session = new Session(randomUUID(), this.user)
+    const session = new Session(1, randomUUID(), this.user);
     this.db.sessions.push(session);
     return session;
   }
